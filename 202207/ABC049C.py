@@ -1,6 +1,7 @@
 S = input()
+flg = False
 # dream dreamer erase eraser
-while True:
+while flg == False:
     if S == "":
         print("YES")
         exit()
@@ -13,5 +14,6 @@ while True:
     elif S[-6:] == "eraser":
         S = S[:-6]
     else:
-        print("NO")
-        exit()
+        flg = True
+
+print("NO")
