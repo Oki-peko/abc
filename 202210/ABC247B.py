@@ -1,31 +1,21 @@
 N = int(input())
-s,t = [],[]
-a = []
+s, t = [], []
+for i in range(N):
+  u, v = input().split()
+  s.append(u)
+  t.append(v)
 
 for i in range(N):
-    tmp = input().split()
-    s.append(tmp[0])
-    t.append(tmp[1])
-
-    if s[i] in a and t[i] in a:
-        print("No")
-        exit()
-
-    if not s[i] in a:
-        a.append(s[i])
-    if not t[i] in a:
-        a.append(t[i])
-
-a = []
-
-for i in reversed(range(N)):
-    if s[i] in a and t[i] in a:
-        print("No")
-        exit()
-
-    if not s[i] in a:
-        a.append(s[i])
-    if not t[i] in a:
-        a.append(t[i])
+    s_flg = True
+    t_flg = True
+    for j in range(N):
+        if i != j:
+            if s[i] == s[j] or s[i] == t[j]:
+                s_flg = False
+            if t[i] == s[j] or t[i] == t[j]:
+                t_flg = False
+        if s_flg == False and t_flg == False:
+            print("No")
+            exit()
 
 print("Yes")
