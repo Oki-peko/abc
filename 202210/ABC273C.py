@@ -1,24 +1,25 @@
+import numpy as np
+
 N = int(input())
 A = list(map(int,input().split()))
 
-even_max1 = 0
-even_max2 = 0
-odd_max1 = 0
-odd_max2 = 0
+sorted_A_index = np.argsort(A)
+order = -1
+tmp = -1
 
-for i in range(N):
-    if A[i]%2==0:
-        if even_max1 < A[i]:
-            even_max1,even_max2 = A[i],even_max1
-        elif even_max2 < A[i]:
-            even_max2 = A[i]
-    else:
-        if odd_max1 < A[i]:
-            odd_max1,odd_max2 = A[i],odd_max1
-        elif odd_max2 < A[i]:
-            odd_max2 = A[i]
+K = [0]*N
 
-if N == 2 and (A[0] + A[1]) % 2 != 0:
-    print(-1)
-else:
-    print(max(even_max1+even_max2,odd_max1+odd_max2))
+for i in sorted_A_index:
+    if tmp != A[i]:
+        order += 1
+    K[i] = order
+    tmp = A[i]
+
+K = [max(K)-x for x in K]
+
+ans = [0]*N
+
+for i in K:
+    ans[i] += 1
+
+print(*ans,sep="\n")
