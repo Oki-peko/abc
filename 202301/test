@@ -1,0 +1,14 @@
+N = int(input())
+
+# Nを素因数分解
+def prime_factorize(n):
+    return_list = []
+    for i in range(2, int(n**0.5)+1):
+        while n % i == 0:
+            return_list.append(i)
+            n //= i
+    if n != 1:
+        return_list.append(n)
+    return return_list
+
+print(prime_factorize(N))
